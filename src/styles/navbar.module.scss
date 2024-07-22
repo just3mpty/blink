@@ -11,24 +11,36 @@
         align-items: center;
 
         img {
-            border-radius: 100%;
+            border-radius: 5px;
+            object-fit: cover;
         }
     }
 
-    button {
-        outline: none;
-        border: none;
-        border-radius: 100%;
-        background-color: var(--accent);
-        color: var(--white);
-        font-size: 18px;
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        transition: opacity 0.1s ease;
+    .buttons {
+        display: flex;
+        align-items: center;
+        gap: 5px;
 
-        &:active {
-            opacity: 0.7;
+        button {
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--accent);
+            color: var(--white);
+            font-size: 14px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: opacity 0.1s ease;
+            min-height: 30px;
+
+            &:nth-last-of-type(1) {
+                background: var(--gray);
+                color: #ffffff75;
+            }
+
+            &:active {
+                opacity: 0.7;
+            }
         }
     }
 }

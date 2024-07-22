@@ -6,16 +6,21 @@ const Navbar = () => {
         <nav className={styles.navbar}>
             <div className={styles.user}>
                 <Image
-                    src={"/favicon.png"}
+                    src={"/3mpty.png"}
                     alt="User's profil picture"
                     width={30}
                     height={30}
                 />
-                <span>Username</span>
+                <span>3mpty</span>
             </div>
-            <button type="button" className={styles.button}>
-                +
-            </button>
+            <div className={styles.buttons}>
+                <button type="button" className={styles.button}>
+                    +
+                </button>
+                <button type="button" className={styles.button}>
+                    Logout
+                </button>
+            </div>
         </nav>
     );
 };

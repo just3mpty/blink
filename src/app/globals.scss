@@ -31,9 +31,10 @@ body {
     color: var(--white);
 
     aside {
-        width: 33%;
+        width: 25%;
         height: 100%;
         background: var(--bg_lighter);
         padding: 15px;
+        box-shadow: 0 0 100px 10px #00000005;
     }
 }
