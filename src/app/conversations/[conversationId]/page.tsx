@@ -1,6 +1,6 @@
 import MessageFeed from "@/components/MessageFeed";
 import MessageInput from "@/components/MessageInput";
-import styles from "../../../styles/messageFeed.module.scss";
+import styles from "@/styles/messageFeed.module.scss";
 import React from "react";
 import MessageItem from "@/components/Message";
 import { Message } from "@/types/Types";

@@ -4,7 +4,7 @@ import { Conv } from "@/types/Types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import styles from "../styles/conversationsList.module.scss";
+import styles from "@/styles/conversationsList.module.scss";
 import { useParams } from "next/navigation";
 
 const ConversationsList = ({ conversations }: { conversations: Conv[] }) => {

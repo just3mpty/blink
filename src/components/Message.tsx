@@ -1,6 +1,6 @@
 import { Message } from "@/types/Types";
 import Image from "next/image";
-import styles from "../styles/messageFeed.module.scss";
+import styles from "@/styles/messageFeed.module.scss";
 
 const MessageItem = ({ username, message, date, imageUrl }: Message) => {
     return (

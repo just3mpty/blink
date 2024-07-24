@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/messageFeed.module.scss";
+import styles from "@/styles/messageFeed.module.scss";
 
 type Props = React.PropsWithChildren<{}>;
 
