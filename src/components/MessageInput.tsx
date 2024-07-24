@@ -32,6 +32,7 @@ const MessageInput = ({ conversationId }: { conversationId: string }) => {
                 createdAt: new Date().toLocaleString("fr-FR", {
                     hour: "2-digit",
                     minute: "2-digit",
+                    second: "numeric",
                     hourCycle: "h24",
                 }),
             });
@@ -52,11 +53,11 @@ const MessageInput = ({ conversationId }: { conversationId: string }) => {
         <form className={styles.form} onSubmit={sendMessage}>
             <input
                 type="text"
-                placeholder="Ecrire un message"
+                placeholder="Write something"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
             />
-            <button type="submit">Envoyer</button>
+            <button type="submit">Send</button>
         </form>
     );
 };

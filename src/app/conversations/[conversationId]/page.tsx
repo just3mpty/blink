@@ -2,7 +2,7 @@
 import MessageFeed from "@/components/MessageFeed";
 import MessageInput from "@/components/MessageInput";
 import styles from "@/styles/messageFeed.module.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MessageItem from "@/components/Message";
 import { Message } from "@/types/Types";
 import {
@@ -18,6 +18,7 @@ import { useParams } from "next/navigation";
 export default function Conversation() {
     const { conversationId } = useParams();
     const [messages, setMessages] = useState<Message[]>([]);
+    const messageRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!conversationId) return;
@@ -46,6 +47,13 @@ export default function Conversation() {
         return () => unsubscribe();
     }, [conversationId]);
 
+    useEffect(() => {
+        // Scroller vers le bas chaque fois que les messages changent
+        if (messageRef.current) {
+            messageRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages]);
+
     return (
         <>
             <MessageFeed>
@@ -60,6 +68,7 @@ export default function Conversation() {
                             id={msg.id}
                         />
                     ))}
+                    <div ref={messageRef} />
                 </div>
             </MessageFeed>
             <MessageInput conversationId={conversationId as string} />

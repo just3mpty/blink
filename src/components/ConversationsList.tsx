@@ -64,7 +64,8 @@ const ConversationsList = () => {
                         <div className={styles.data}>
                             <p>{conv.contact}</p>
                             <p>
-                                {conv.contact}: <span>{conv.lastMessage}</span>
+                                Dernier message :{" "}
+                                <span>{conv.lastMessage}</span>
                             </p>
                         </div>
                         <div className={styles.time}>

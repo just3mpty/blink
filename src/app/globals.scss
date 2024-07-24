@@ -32,6 +32,10 @@ body {
     display: flex;
     position: relative;
 
+    @media screen and (max-width: 1024px) {
+        flex-direction: column;
+    }
+
     main {
         width: 100%;
         height: 100%;
@@ -86,10 +90,17 @@ body {
     }
 
     aside {
-        width: 25%;
+        width: 30%;
         height: 100%;
         background: var(--bg_lighter);
         padding: 15px;
         box-shadow: 0 0 100px 10px #00000005;
+
+        @media screen and (max-width: 1024px) {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: fit-content;
+        }
     }
 }
