@@ -1,8 +1,52 @@
 .loginContainer {
+    position: relative;
     width: 100%;
     height: 100%;
     background: var(--bg);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    h1 {
+        font-size: 60px;
+
+        span {
+            color: var(--accent);
+        }
+    }
+
+    p {
+        color: var(--white);
+        opacity: 0.5;
+    }
+
+    .loginButton {
+        max-width: 250px;
+        width: fit-content;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-top: 30px;
+        background: var(--dark_gray);
+        color: var(--white);
+        border: 1px solid var(--gray);
+        padding: 5px 10px;
+        border-radius: 5px;
+
+        img {
+            object-fit: contain;
+        }
+
+        button {
+            outline: none;
+            border: none;
+            font-size: 18px;
+            color: var(--white);
+            background: transparent;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+    }
 }

@@ -5,7 +5,7 @@ import "./globals.scss";
 const sora = Sora({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "BLINK",
+    title: "Blink.",
     description: "Real time chat app.",
 };
 

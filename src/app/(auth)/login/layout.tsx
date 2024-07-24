@@ -1,4 +1,4 @@
-import React from "react";
+import "@/app/globals.scss";
 
 type Props = React.PropsWithChildren<{}>;
 

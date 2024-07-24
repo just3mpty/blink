@@ -52,6 +52,10 @@ body {
                 h2 {
                     font-size: 60px;
                     font-weight: bold;
+
+                    span {
+                        color: var(--accent);
+                    }
                 }
                 p {
                     font-size: 16px;

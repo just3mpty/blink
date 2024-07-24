@@ -1,7 +1,9 @@
 export default function Home() {
     return (
         <div className="starting">
-            <h2>Hi there !</h2>
+            <h2>
+                <span>H</span>i there !
+            </h2>
             <p>
                 To start a conversation, click on the <span>+</span> button.{" "}
                 <br />
