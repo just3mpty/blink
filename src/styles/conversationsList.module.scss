@@ -27,6 +27,10 @@
         position: relative;
         transition: background 0.2s ease;
 
+        &.active {
+            border-right: 2px solid var(--accent);
+        }
+
         &:hover {
             background: var(--dark_gray);
         }

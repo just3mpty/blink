@@ -1,16 +1,24 @@
+"use client";
+
 import { Conv } from "@/types/Types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import styles from "../styles/conversationsList.module.scss";
+import { useParams } from "next/navigation";
 
 const ConversationsList = ({ conversations }: { conversations: Conv[] }) => {
+    const { conversationId } = useParams();
+
     return (
         <div className={styles.items}>
             <h2>Conversations</h2>
             <div className={styles.divider}></div>
             {conversations.map((conv: Conv, idx: number) => (
-                <Link href={conv.path} key={idx}>
+                <Link
+                    className={conversationId === conv.id ? styles.active : ""}
+                    href={`/conversations/${conv.id}`}
+                    key={idx}>
                     <Image
                         src={conv?.imageUrl || "/favicon.png"}
                         alt={`${conv.username}'s profil picture`}

@@ -3,7 +3,14 @@ interface Conv {
     imageUrl: string;
     contact: string;
     lastMessage: string;
-    path: string;
+    id: string;
 }
 
-export type { Conv };
+interface Message {
+    username: string;
+    message: string;
+    date: string;
+    imageUrl: string;
+}
+
+export type { Conv, Message };
