@@ -1,5 +1,4 @@
 "use client";
-
 import { Conv } from "@/types/Types";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,9 +32,13 @@ const ConversationsList = () => {
                     contact: data.contact || "Unknown",
                     lastMessage: data.lastMessage || "",
                     createdAt: data.createdAt || "",
+                    participants: data.participants || [],
                 } as Conv;
             });
-            setConversations(convData);
+            const filtered = convData
+                .filter((conv) => conv.participants.includes(user.uid))
+                .filter((conv) => conv.username !== user.displayName);
+            setConversations(filtered);
         });
         return () => unsubscribe();
     }, [user]);
@@ -59,7 +62,7 @@ const ConversationsList = () => {
                             height={60}
                         />
                         <div className={styles.data}>
-                            <p>{conv.username}</p>
+                            <p>{conv.contact}</p>
                             <p>
                                 {conv.contact}: <span>{conv.lastMessage}</span>
                             </p>

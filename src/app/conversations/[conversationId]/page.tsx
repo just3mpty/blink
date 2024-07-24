@@ -5,7 +5,6 @@ import styles from "@/styles/messageFeed.module.scss";
 import React, { useEffect, useState } from "react";
 import MessageItem from "@/components/Message";
 import { Message } from "@/types/Types";
-import { useRouter } from "next/router";
 import {
     collection,
     onSnapshot,
@@ -14,10 +13,10 @@ import {
     where,
 } from "firebase/firestore";
 import { db } from "@/config/firebaseConfig";
+import { useParams } from "next/navigation";
 
 export default function Conversation() {
-    const router = useRouter();
-    const { conversationId } = router.query;
+    const { conversationId } = useParams();
     const [messages, setMessages] = useState<Message[]>([]);
 
     useEffect(() => {
@@ -35,10 +34,10 @@ export default function Conversation() {
                 const data = doc.data();
                 return {
                     id: doc.id,
-                    username: data.username || "",
+                    username: data.senderName || "",
                     message: data.message || "",
-                    date: data.date || "",
-                    imageUrl: data.imageUrl || "",
+                    date: data.createdAt || "",
+                    imageUrl: data.senderPhotoURL || "",
                 } as Message;
             });
             setMessages(messagesData);
@@ -56,16 +55,14 @@ export default function Conversation() {
                             key={msg.id}
                             username={msg.username}
                             message={msg.message}
-                            date={msg.date}
+                            date={msg.date.toString()}
                             imageUrl={msg.imageUrl}
                             id={msg.id}
                         />
                     ))}
                 </div>
             </MessageFeed>
-            <div className={styles.inputContainer}>
-                <MessageInput />
-            </div>
+            <MessageInput conversationId={conversationId as string} />
         </>
     );
 }

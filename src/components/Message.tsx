@@ -1,13 +1,19 @@
 import { Message } from "@/types/Types";
 import Image from "next/image";
 import styles from "@/styles/messageFeed.module.scss";
+import { useAuth } from "@/context/AuthContext";
 
 const MessageItem = ({ username, message, date, imageUrl }: Message) => {
+    const { user } = useAuth();
     return (
         <div
-            style={username === "3mpty" ? { alignSelf: "flex-end" } : {}}
+            style={
+                username === user?.displayName ? { alignSelf: "flex-end" } : {}
+            }
             className={
-                username === "John" ? styles.messageItem : styles.sender
+                username === user?.displayName
+                    ? styles.sender
+                    : styles.messageItem
             }>
             <Image
                 src={imageUrl || "/3mpty.png"}

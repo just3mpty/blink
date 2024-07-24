@@ -38,7 +38,6 @@ const StartConversationModal = ({ onClose }: { onClose: () => void }) => {
                     contact: selectedUser.displayName,
                     imageUrl: selectedUser.photoURL,
                     createdAt: new Date().toLocaleString("fr-FR", {
-                        weekday: "short",
                         year: "numeric",
                         month: "short",
                         day: "2-digit",
