@@ -1,8 +1,13 @@
+"use client";
+import { useAuth } from "@/context/AuthContext";
+
 export default function Home() {
+    const { user } = useAuth();
     return (
         <div className="starting">
             <h2>
-                <span>H</span>i there !
+                <span>W</span>elcome{" "}
+                <span>{user ? user?.displayName : ""}</span> !
             </h2>
             <p>
                 To start a conversation, click on the <span>+</span> button.{" "}

@@ -1,52 +1,43 @@
+"use client";
 import "../globals.scss";
 import Navbar from "@/components/Navbar";
 import ConversationsList from "@/components/ConversationsList";
 import { Conv } from "@/types/Types";
+import { useEffect, useState } from "react";
+import { auth } from "@/config/firebaseConfig";
+import { useRouter } from "next/navigation";
+import { User } from "firebase/auth";
+import { AuthProvider } from "@/context/AuthContext";
 
 // === FAKE DATA ===
-const conversations: Conv[] = [
-    {
-        imageUrl: "/fakeData/4.jpg",
-        username: "John",
-        id: "4",
-        contact: "John",
-        lastMessage: "Message test",
-    },
-    {
-        imageUrl: "/fakeData/1.jpg",
-        username: "Michelle",
-        id: "1",
-        contact: "3mpty",
-        lastMessage: "Message test",
-    },
-    {
-        imageUrl: "/fakeData/2.jpg",
-        username: "Gertrude",
-        id: "2",
-        contact: "John Test",
-        lastMessage: "Message test",
-    },
-    {
-        imageUrl: "/fakeData/3.jpg",
-        username: "Pascal le petit reuf",
-        id: "3",
-        contact: "John Test",
-        lastMessage: "Message test",
-    },
-];
 
 export default function DefaultLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const router = useRouter();
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                router.push("/conversations");
+            } else {
+                router.push("/login");
+            }
+            setUser(user);
+        });
+        return () => unsubscribe();
+    });
+
     return (
-        <>
+        <AuthProvider>
             <aside>
-                <Navbar />
-                <ConversationsList conversations={conversations} />
+                <Navbar user={user} />
+                <ConversationsList />
             </aside>
             <main>{children}</main>
-        </>
+        </AuthProvider>
     );
 }

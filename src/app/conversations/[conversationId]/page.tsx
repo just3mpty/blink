@@ -1,39 +1,65 @@
+"use client";
 import MessageFeed from "@/components/MessageFeed";
 import MessageInput from "@/components/MessageInput";
 import styles from "@/styles/messageFeed.module.scss";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MessageItem from "@/components/Message";
 import { Message } from "@/types/Types";
+import { useRouter } from "next/router";
+import {
+    collection,
+    onSnapshot,
+    orderBy,
+    query,
+    where,
+} from "firebase/firestore";
+import { db } from "@/config/firebaseConfig";
 
 export default function Conversation() {
-    const Messages: Message[] = [
-        {
-            username: "John",
-            message: "Test de message",
-            date: "12:25",
-            imageUrl: "/fakeData/4.jpg",
-        },
-        {
-            username: "John",
-            message:
-                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, aliquid natus cupiditate veritatis a numquam?",
-            date: "12:28",
-            imageUrl: "/fakeData/4.jpg",
-        },
-        {
-            username: "3mpty",
-            message: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-            date: "12:28",
-            imageUrl: "/3mpty.png",
-        },
-    ];
+    const router = useRouter();
+    const { conversationId } = router.query;
+    const [messages, setMessages] = useState<Message[]>([]);
+
+    useEffect(() => {
+        if (!conversationId) return;
+
+        const messagesCollection = collection(db, "messages");
+        const q = query(
+            messagesCollection,
+            where("conversationId", "==", conversationId),
+            orderBy("createdAt", "asc")
+        );
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const messagesData = snapshot.docs.map((doc) => {
+                const data = doc.data();
+                return {
+                    id: doc.id,
+                    username: data.username || "",
+                    message: data.message || "",
+                    date: data.date || "",
+                    imageUrl: data.imageUrl || "",
+                } as Message;
+            });
+            setMessages(messagesData);
+        });
+
+        return () => unsubscribe();
+    }, [conversationId]);
 
     return (
         <>
             <MessageFeed>
                 <div className={styles.messages}>
-                    {Messages.map((msg, idx) => (
-                        <MessageItem key={idx} {...msg} />
+                    {messages.map((msg) => (
+                        <MessageItem
+                            key={msg.id}
+                            username={msg.username}
+                            message={msg.message}
+                            date={msg.date}
+                            imageUrl={msg.imageUrl}
+                            id={msg.id}
+                        />
                     ))}
                 </div>
             </MessageFeed>

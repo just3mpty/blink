@@ -1,12 +1,15 @@
 interface Conv {
+    participants: string[];
+    id: string;
     username: string;
     imageUrl: string;
     contact: string;
     lastMessage: string;
-    id: string;
+    createdAt: string;
 }
 
 interface Message {
+    id: string;
     username: string;
     message: string;
     date: string;
