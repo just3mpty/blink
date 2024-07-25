@@ -110,7 +110,7 @@ const ConversationsList = () => {
                                     {participantsNames[1]}
                                 </div>
                                 <p>
-                                    Dernier message :{" "}
+                                    Last message :{" "}
                                     <span>{conv.lastMessage}</span>
                                 </p>
                             </div>

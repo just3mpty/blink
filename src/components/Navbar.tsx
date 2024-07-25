@@ -2,8 +2,9 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/navbar.module.scss";
 import { signOut, User } from "firebase/auth";
-import StartConversationModal from "./StartConvModal";
 import { auth } from "@/config/firebaseConfig";
+import StartConversationModal from "./StartConvModal";
+import { MdLogout } from "react-icons/md";
 
 const Navbar = ({ user }: { user: User | null }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,7 +43,7 @@ const Navbar = ({ user }: { user: User | null }) => {
                     type="button"
                     className={styles.button}
                     onClick={handleLogout}>
-                    Logout
+                    <MdLogout />
                 </button>
             </div>
 

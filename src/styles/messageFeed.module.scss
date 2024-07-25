@@ -28,11 +28,20 @@
         justify-content: flex-end;
         gap: 10px;
 
+        @media screen and (max-width: 550px) {
+            max-width: 400px;
+        }
+
         .messageItem {
             max-width: 50%;
+            width: fit-content;
             height: fit-content;
             display: flex;
             gap: 10px;
+
+            @media screen and (max-width: 550px) {
+                max-width: 80%;
+            }
 
             img {
                 object-fit: cover;
@@ -59,12 +68,20 @@
                     align-items: center;
                     justify-content: space-between;
                     gap: 10px;
+                    text-wrap: wrap;
+                    word-break: break-word;
 
                     span {
                         font-weight: 200;
                         opacity: 0.75;
                         font-size: 12px;
                     }
+                }
+
+                p.message {
+                    @extend p;
+                    text-wrap: wrap;
+                    width: 100%;
                 }
             }
         }
@@ -73,6 +90,12 @@
             flex-direction: row-reverse;
             align-items: flex-end;
             justify-content: flex-end;
+            width: fit-content;
+            height: fit-content;
+
+            @media screen and (max-width: 550px) {
+                max-width: 80%;
+            }
 
             .userData {
                 background: var(--gray);

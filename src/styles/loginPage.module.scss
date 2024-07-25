@@ -7,9 +7,31 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    .blur {
+        width: 350px;
+        height: 350px;
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        border-radius: 300px;
+        z-index: 0;
+        background-color: var(--accent);
+        filter: blur(150px);
+
+        &:nth-child(1) {
+            top: unset;
+            left: unset;
+            bottom: -25%;
+            right: -25%;
+        }
+    }
 
     h1 {
         font-size: 60px;
+        z-index: 1;
 
         span {
             color: var(--accent);
@@ -17,11 +39,13 @@
     }
 
     p {
+        z-index: 1;
         color: var(--white);
         opacity: 0.5;
     }
 
     .loginButton {
+        z-index: 1;
         max-width: 250px;
         width: fit-content;
         display: flex;

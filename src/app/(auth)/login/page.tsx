@@ -29,6 +29,8 @@ const LoginPage = () => {
 
     return (
         <section className={styles.loginContainer}>
+            <div className={styles.blur} />
+            <div className={styles.blur} />
             <h1>
                 <span>B</span>link.
             </h1>
