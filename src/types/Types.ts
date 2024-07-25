@@ -16,4 +16,10 @@ interface Message {
     imageUrl: string;
 }
 
-export type { Conv, Message };
+interface User {
+    id: string;
+    displayName: string;
+    photoURL: string;
+}
+
+export type { Conv, Message, User };

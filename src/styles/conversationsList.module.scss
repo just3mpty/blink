@@ -35,15 +35,40 @@
             background: var(--dark_gray);
         }
 
-        img {
-            border-radius: 5px;
-            object-fit: cover;
+        .images {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 60px;
+            height: 60px;
+
+            img {
+                position: absolute;
+                top: 5px;
+                left: 5px;
+                border-radius: 100%;
+                object-fit: cover;
+
+                &:nth-child(2) {
+                    top: unset;
+                    left: unset;
+                    right: 5px;
+                    bottom: 5px;
+                }
+            }
         }
 
         .data {
             display: flex;
             flex-direction: column;
             gap: 5px;
+
+            .participants {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
 
             p {
                 overflow: hidden;
